@@ -607,6 +607,76 @@ header .navbar-collapse .nav-link:hover::after {
     color: #000000;
 }
 
+.project-feature {
+    max-width: 1100px;
+    margin: 0 auto;
+    text-align: center;
+}
+
+.project-feature__title {
+    font-size: 2.2rem;
+    font-weight: bold;
+    color: #264653;
+    margin-bottom: 1rem;
+}
+
+.project-feature__desc {
+    font-size: 1.5rem;
+    line-height: 1.8;
+    color: #555555;
+    margin-bottom: 2.5rem;
+    max-width: 900px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.project-gallery__item {
+    margin: 0;
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0px 6px 14px rgba(0, 0, 0, 0.12);
+    background: #ffffff;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.project-gallery__item:hover {
+    transform: translateY(-6px);
+    box-shadow: 0px 10px 20px rgba(106, 13, 173, 0.2);
+}
+
+.project-gallery__item img {
+    width: 100%;
+    height: 320px;
+    object-fit: cover;
+    display: block;
+}
+
+.project-gallery__item--featured img {
+    height: auto;
+    max-height: 520px;
+    object-fit: contain;
+    background: #f5f5f5;
+}
+
+@media (max-width: 768px) {
+    .project-feature__title {
+        font-size: 1.8rem;
+    }
+
+    .project-feature__desc {
+        font-size: 1.2rem;
+    }
+
+    .project-gallery__item img {
+        height: 240px;
+    }
+
+    .project-gallery__item--featured img {
+        max-height: 320px;
+        height: auto;
+    }
+}
+
 
 .carousel-control-prev-icon,
 .carousel-control-next-icon {
@@ -689,6 +759,33 @@ header .navbar-collapse .nav-link:hover::after {
     display: block; /* Ensure it behaves like a block-level element */
 }
 
+.company-card--partner {
+    background-color: #ffffff;
+    padding: 2rem;
+}
+
+.company-card__logo-wrap {
+    background-color: #ffffff;
+    border-radius: 12px;
+    padding: 1.5rem;
+    margin-bottom: 1.5rem;
+}
+
+.company-card--partner .company-card__logo {
+    width: 100%;
+    max-width: 420px;
+    height: auto;
+    object-fit: contain;
+    margin: 0 auto;
+    display: block;
+}
+
+.company-card__name-en {
+    font-size: 1.2rem !important;
+    color: #555555 !important;
+    margin-top: 0.5rem !important;
+}
+
 
 .company-card h3 {
     font-size: 2rem; /* Emphasize company name */
@@ -718,6 +815,12 @@ header .navbar-collapse .nav-link:hover::after {
     .company-card img {
         width: 200px; /* Smaller image size */
         height: 200px;
+    }
+
+    .company-card--partner .company-card__logo {
+        width: 100%;
+        max-width: 100%;
+        height: auto;
     }
 
     .company-card h3 {
