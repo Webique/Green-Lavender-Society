@@ -1,66 +1,51 @@
-// Smooth Scrolling for Internal Links
-document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+// Smooth scroll + close mobile menu (RTL-safe)
+document.querySelectorAll('a[href^="#"]').forEach((anchor) => {
     anchor.addEventListener('click', function (e) {
+        const href = this.getAttribute('href');
+        if (!href || href === '#') return;
+
         e.preventDefault();
-        const targetId = this.getAttribute('href').slice(1);
-        const targetElement = document.getElementById(targetId);
-        const offset = document.querySelector('header').offsetHeight || 100;
-        const elementPosition = targetElement.getBoundingClientRect().top + window.scrollY;
-        const offsetPosition = elementPosition - offset;
+        const targetElement = document.getElementById(href.slice(1));
+        if (!targetElement) return;
 
-        window.scrollTo({
-            top: offsetPosition,
-            behavior: 'smooth'
-        });
+        const header = document.querySelector('.site-header');
+        const offset = header ? header.offsetHeight : 72;
+        const top =
+            targetElement.getBoundingClientRect().top + window.scrollY - offset;
 
-        // Close navbar when clicking a link
-        const navbarCollapse = document.querySelector('.navbar-collapse');
-        const navbarToggler = document.querySelector('.navbar-toggler');
-        if (navbarCollapse.classList.contains('show')) {
-            navbarCollapse.classList.remove('show'); // Close the menu
-            navbarToggler.setAttribute('aria-expanded', 'false'); // Sync aria-expanded
+        window.scrollTo({ top, behavior: 'smooth' });
+
+        const navbarCollapse = document.getElementById('navbarNav');
+        if (navbarCollapse?.classList.contains('show') && typeof bootstrap !== 'undefined') {
+            bootstrap.Collapse.getOrCreateInstance(navbarCollapse).hide();
         }
     });
 });
 
+// Highlight active nav link on scroll
+document.addEventListener('DOMContentLoaded', () => {
+    const sections = document.querySelectorAll('section[id]');
+    const navLinks = document.querySelectorAll('.site-navbar .nav-link[href^="#"]');
 
+    if (!sections.length || !navLinks.length) return;
 
+    const setActive = () => {
+        const scrollPos = window.scrollY + 100;
+        let current = '';
 
+        sections.forEach((section) => {
+            if (scrollPos >= section.offsetTop) {
+                current = section.getAttribute('id');
+            }
+        });
 
-// Ensure the navbar toggler toggles the menu open and closed smoothly
-document.querySelector('.navbar-toggler').addEventListener('click', function () {
-    const navbarCollapse = document.querySelector('.navbar-collapse');
+        navLinks.forEach((link) => {
+            link.classList.toggle('active', link.getAttribute('href') === `#${current}`);
+        });
+    };
 
-    // Avoid any animation glitch by toggling a 'hidden' class first
-    if (navbarCollapse.classList.contains('show')) {
-        navbarCollapse.classList.add('hiding'); // Add a temporary class for hiding animation
-        setTimeout(() => {
-            navbarCollapse.classList.remove('show', 'hiding'); // Remove the classes after animation
-        }, 300); // Match this duration to your CSS transition time
-        this.setAttribute('aria-expanded', 'false'); // Update aria-expanded
-    } else {
-        navbarCollapse.classList.add('showing'); // Add a temporary class for showing animation
-        setTimeout(() => {
-            navbarCollapse.classList.remove('showing'); // Remove the temporary class
-            navbarCollapse.classList.add('show'); // Keep the menu open
-        }, 10); // Short delay to allow for smooth animation
-        this.setAttribute('aria-expanded', 'true'); // Update aria-expanded
-    }
-});
-
-// Close Navbar When Clicking Outside
-document.addEventListener('click', (event) => {
-    const navbarCollapse = document.querySelector('.navbar-collapse');
-    const navbarToggler = document.querySelector('.navbar-toggler');
-    const isClickInside = navbarToggler.contains(event.target) || navbarCollapse.contains(event.target);
-
-    if (!isClickInside && navbarCollapse.classList.contains('show')) {
-        navbarCollapse.classList.add('hiding');
-        setTimeout(() => {
-            navbarCollapse.classList.remove('show', 'hiding');
-            navbarToggler.setAttribute('aria-expanded', 'false');
-        }, 300);
-    }
+    window.addEventListener('scroll', setActive, { passive: true });
+    setActive();
 });
 
 

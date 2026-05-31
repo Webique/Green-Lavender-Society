@@ -1,64 +1,59 @@
 <!DOCTYPE html>
-<html lang="ar">
+<html lang="ar" dir="rtl">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=0.6">
-    <title>ﺟﻤﻌﻴـﺔ اﻟﺨـﺰاﻣـﻰ اﻟﺨـﻀـﺮاء</title>
-    <!-- Styles Section -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>جمعية الخزامى الخضراء</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+Arabic:wght@400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <link rel="stylesheet" href="styles.css">
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/js/bootstrap.bundle.min.js"></script>
-
 </head>
 <body>
-    <header>
-        <div class="container">
-            <nav class="navbar navbar-expand-lg">
-                <!-- Brand Title and Logo -->
-                <a class="navbar-brand" href="#">
-                    <img src="logo.png" alt="الشعار" style="width: 40px; height: 40px; margin-right: 10px;">
-                    ﺟﻤﻌﻴـﺔ اﻟﺨـﺰاﻣـﻰ اﻟﺨـﻀـﺮاء
+    <header class="site-header">
+        <nav class="navbar navbar-expand-xl navbar-dark site-navbar" aria-label="التنقل الرئيسي">
+            <div class="container-fluid site-navbar__container">
+                <a class="navbar-brand site-navbar__brand" href="#" aria-label="العودة إلى أعلى الصفحة">
+                    <img src="logo.png" alt="" width="52" height="52" class="site-navbar__logo">
+                    <span class="site-navbar__title">جمعية الخزامى الخضراء</span>
                 </a>
-    
 
-                <!-- Hamburger Menu (Toggler Button) -->
                 <button
-                    class="navbar-toggler"
+                    class="navbar-toggler site-navbar__toggler"
                     type="button"
                     data-bs-toggle="collapse"
                     data-bs-target="#navbarNav"
                     aria-controls="navbarNav"
                     aria-expanded="false"
-                    aria-label="Toggle navigation">
+                    aria-label="فتح أو إغلاق القائمة">
                     <span class="navbar-toggler-icon"></span>
                 </button>
-    
-                <!-- Collapsible Menu -->
-                <div class="collapse navbar-collapse" id="navbarNav">
-                    <ul class="navbar-nav ms-auto">
-                        <li class="nav-item"><a class="nav-link" href="#about">من نحن</a></li> <!-- About Section -->
-                        <li class="nav-item"><a class="nav-link" href="#objectives">الأهداف</a></li> <!-- Objectives Section -->
-                        <li class="nav-item"><a class="nav-link" href="#initiatives">مبادراتنا</a></li> <!-- Initiatives Section -->
-                        <li class="nav-item"><a class="nav-link" href="#projects">مشاريعنا</a></li> <!-- Projects Section -->
-                        <li class="nav-item"><a class="nav-link" href="#slideshow">وسائط</a></li> <!-- Gallery Section -->
-                        <li class="nav-item"><a class="nav-link" href="#associated-companies">شركاؤنا</a></li> <!-- Associated Companies Section -->
-                        <li class="nav-item"><a class="nav-link" href="#statistics">الإحصائيات</a></li> <!-- Statistics Section -->
-                        <li class="nav-item"><a class="nav-link" href="#location">موقعنا</a></li> <!-- Location Section -->
-                        <li class="nav-item"><a class="nav-link" href="#governance">الحوكمة</a></li> <!-- Governance Documents -->
-                        <li class="nav-item"><a class="nav-link" href="#contact">اتصل بنا</a></li> <!-- Contact Section -->
-                        <li class="nav-item"><a class="nav-link" href="https://x.com/greenlavendersa/status/2053081197236875654?s=46&t=DwjmgxZP1ScqBV_VPkvwgQ" target="_blank" rel="noopener noreferrer">الأخبار</a></li> <!-- News (X/Twitter) -->
 
-                        
+                <div class="collapse navbar-collapse site-navbar__collapse" id="navbarNav">
+                    <ul class="navbar-nav site-navbar__nav">
+                        <li class="nav-item"><a class="nav-link" href="#about">من نحن</a></li>
+                        <li class="nav-item"><a class="nav-link" href="#objectives">الأهداف</a></li>
+                        <li class="nav-item"><a class="nav-link" href="#initiatives">مبادراتنا</a></li>
+                        <li class="nav-item"><a class="nav-link" href="#projects">مشاريعنا</a></li>
+                        <li class="nav-item"><a class="nav-link" href="#slideshow">وسائط</a></li>
+                        <li class="nav-item"><a class="nav-link" href="#associated-companies">شركاؤنا</a></li>
+                        <li class="nav-item"><a class="nav-link" href="#statistics">الإحصائيات</a></li>
+                        <li class="nav-item"><a class="nav-link" href="#location">موقعنا</a></li>
+                        <li class="nav-item"><a class="nav-link" href="#governance">الحوكمة</a></li>
+                        <li class="nav-item"><a class="nav-link" href="#contact">اتصل بنا</a></li>
+                        <li class="nav-item">
+                            <a class="nav-link site-navbar__news" href="https://x.com/greenlavendersa/status/2053081197236875654?s=46&t=DwjmgxZP1ScqBV_VPkvwgQ" target="_blank" rel="noopener noreferrer">
+                                الأخبار
+                                <i class="fas fa-external-link-alt" aria-hidden="true"></i>
+                            </a>
+                        </li>
                     </ul>
                 </div>
-            </nav>
-        </div>
+            </div>
+        </nav>
     </header>
-    
-
-        
-    </div>
 
 
     <div class="hero">
@@ -419,7 +414,6 @@
     </footer>
     
 
-    <!-- Scripts Section -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/js/bootstrap.bundle.min.js"></script>
     <script src="script.js"></script>
 </body>

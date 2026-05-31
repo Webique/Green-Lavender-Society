@@ -1,266 +1,210 @@
-/* Global Styles Section */
+/* Global */
+:root {
+    --header-height: 4.5rem;
+    --brand-purple: #735589;
+    --brand-purple-dark: #5c4370;
+    --brand-accent: #f4a261;
+    --brand-green: #264653;
+}
+
+html {
+    scroll-padding-top: calc(var(--header-height) + 1rem);
+}
+
 body {
-    font-family: 'Roboto', sans-serif; /* Professional font */
+    font-family: 'IBM Plex Sans Arabic', 'Segoe UI', Tahoma, sans-serif;
     line-height: 1.6;
     background-color: #e4e4e4;
-    color: #000000; /* Consistent text color */
+    color: #000000;
     margin: 0;
     padding: 0;
+    text-align: right;
 }
 
-/* Header Section */ 
-/* Header Section */
-/* Header Section */
-header {
-    background-color: #735589; /* Dark green background */
-    color: white;
-    padding: 0.5rem 1rem; /* Retain existing padding */
-    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+/* ——— Site header / navbar (RTL) ——— */
+.site-header {
     position: sticky;
     top: 0;
-    z-index: 1000;
-    transition: background-color 0.3s ease, box-shadow 0.3s ease;
-    height: calc(150px + env(safe-area-inset-top)); /* Include safe area for iPhones */
-    padding-top: env(safe-area-inset-top); /* Add padding to the top to cover the notch area */
+    z-index: 1030;
+    padding-top: env(safe-area-inset-top);
+    background: linear-gradient(180deg, var(--brand-purple) 0%, var(--brand-purple-dark) 100%);
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
 }
 
-
-/* Navbar Container Adjustment */
-header .navbar {
-    align-items: center; /* Ensure vertical alignment remains consistent */
-    padding: 0; /* Keep the existing padding */
-    height: 150px; /* Fixed navbar height to prevent resizing */
+.site-navbar {
+    --bs-navbar-color: rgba(255, 255, 255, 0.92);
+    --bs-navbar-hover-color: var(--brand-accent);
+    --bs-navbar-active-color: #fff;
+    position: relative;
+    min-height: var(--header-height);
+    padding: 0.5rem 0;
 }
 
-/* Brand Title and Logo */
-header .navbar-brand {
-    display: flex;
-    align-items: center; /* Vertically align logo and text */
-    font-size: 2.2rem; /* Adjust font size for better visibility */
-    color: white; /* Static white color */
-    text-transform: uppercase;
-    font-weight: bold;
-    margin: 0; /* Remove extra margin */
-    white-space: nowrap; /* Prevent the title from wrapping */
-    overflow: hidden; /* Prevent overflow if the title is too long */
-    text-overflow: ellipsis; /* Add ellipsis for truncated titles */
-    flex-shrink: 0; /* Ensure the title doesn't shrink */
-    margin-right: 0rem; /* Add space between title/logo and links */
-    margin-left: -4rem;
-    cursor: default; /* Remove clickable behavior */
-    text-decoration: none; /* Remove underline or default link styles */
+.site-navbar__container {
+    max-width: 1400px;
+    padding-inline: 1rem;
+    gap: 0.75rem;
 }
 
-/* Remove hover effect on title */
-header .navbar-brand:hover {
-    color: white; /* Ensure color doesn't change on hover */
-}
-
-/* Brand Logo Styling */
-header .navbar-brand img {
-    width: 200px !important; /* Increased width for a larger logo */
-    height: auto !important; /* Maintain aspect ratio */
-    margin-left: -2.5rem !important; /* Adjust margin for proper alignment */
-    margin-top: -1.3rem; /* Adjust top margin for better positioning */
-    object-fit: contain; /* Ensure the logo fits without distortion */
-    max-height: 400px; /* Increase maximum height to allow for a larger logo */
-
-}
-
-
-
-/* Navbar Links */
-header .navbar-nav {
-    display: flex; /* Arrange links horizontally */
-    align-items: center; /* Vertically align links */
-    gap: 0.3rem; /* Reduce space between links for compactness */
-    margin-left: 1rem; /* Add space between title/logo and menu */
-    overflow: hidden; /* Prevent overflow issues */
-}
-
-/* Prevent Overlap of Navbar Links and Title */
-header .navbar-collapse {
+.site-navbar__brand {
     display: flex;
     align-items: center;
-    justify-content: flex-end; /* Push the menu links to the right */
-    flex-grow: 1; /* Allow the navbar to take up available space */
+    gap: 0.75rem;
+    margin: 0;
+    padding: 0.25rem 0;
+    color: #fff !important;
+    text-decoration: none;
+    flex-shrink: 0;
+    max-width: min(100%, 280px);
 }
 
-/* Navbar Links Styling */
-header .nav-link {
-    color: #ffffff; /* Ensure links are visible on dark backgrounds */
-    font-size: 1rem; /* Slightly smaller font size */
-    text-transform: uppercase;
-    font-weight: 500;
-    padding: 0.2rem 0.3rem; /* Reduced padding for compactness */
-    transition: color 0.3s ease;
+.site-navbar__brand:hover,
+.site-navbar__brand:focus {
+    color: #fff !important;
+    opacity: 0.95;
 }
 
-header .nav-link:hover {
-    color: #f4a261; /* Highlight on hover */
+.site-navbar__logo {
+    width: 52px;
+    height: 52px;
+    object-fit: contain;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.12);
+    padding: 4px;
+    flex-shrink: 0;
 }
 
-
-/* Desktop View (Large Screens) */
-@media (min-width: 992px) {
-    .navbar-collapse {
-        display: flex !important; /* Force horizontal layout */
-        align-items: center; /* Center vertically */
-        justify-content: flex-end; /* Push links to the right */
-        opacity: 1 !important; /* Ensure visibility */
-        transform: none !important; /* No transform for desktop */
-        background-color: transparent !important; /* Remove background */
-        box-shadow: none !important; /* Remove shadow */
-        position: static !important; /* Position inside the flow */
-    }
-
-    .navbar-nav {
-        gap: 1rem; /* Space out links more evenly */
-    }
-}
-
-
-
-
-/* Mobile View (Small Screens) */
-@media (max-width: 991px) {
-    .navbar-collapse {
-        background-color: rgba(0, 0, 0, 0.8); /* Dark background for dropdown */
-        position: absolute; /* Position dropdown above content */
-        top: 70px; /* Align below the adjusted header */
-        left: 0;
-        width: 100%;
-        padding: 1rem 0;
-        box-shadow: 0px 4px 20px rgba(0, 0, 0, 0.5); /* Add shadow for dropdown */
-        opacity: 0; /* Hidden by default */
-        transform: scaleY(0.8); /* Collapse effect */
-        transform-origin: top center;
-        transition: opacity 0.4s ease, transform 0.4s ease;
-    }
-
-    .navbar-collapse.show {
-        opacity: 1; /* Show dropdown */
-        transform: scaleY(1); /* Expand */
-    }
-
-    .navbar-nav {
-        flex-direction: column; /* Stack items vertically */
-        gap: 0.5rem; /* Reduce spacing */
-    }
-
-    .nav-link {
-        text-align: center; /* Center-align text */
-    }
-    
-}
-
-
-
-
-/* Hamburger Menu (Toggler Button) */
-header .navbar-toggler {
-    border: none;
-    background-color: transparent;
-    padding: 0.5rem; /* Add padding for clickability */
-    margin-left: auto; /* Push to the far right */
-    align-self: center; /* Vertically align with the navbar */
-}
-
-header .navbar-toggler-icon {
-    width: 25px; /* Adjust size for better alignment */
-    height: 25px;
-    margin-left: -2rem;
-    background-image: url("data:image/svg+xml;charset=utf8,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 30 30'%3E%3Cpath stroke='%23FFFFFF' stroke-width='2' d='M4 7h22M4 15h22M4 23h22'/%3E%3C/svg%3E");
-    background-repeat: no-repeat;
-    background-position: center;
-    background-size: contain;
-}
-
-/* Navbar Dropdown Background (Stylish and Animated) */
-header .navbar-collapse {
-    background-color: rgba(0, 0, 0, 0.8);
-    position: absolute; /* Ensures dropdown overlays content */
-    top: 106px; /* Adjust to move the dropdown lower */
-    left: 0;
-    width: 100%; /* Full width */
-    padding: 1rem 0; /* Add spacing inside the dropdown */
-    z-index: 1000; /* Ensure it appears above other elements */
-    box-shadow: 0px 4px 20px rgba(0, 0, 0, 0.5); /* Stronger shadow for depth */
-    opacity: 0; /* Start fully transparent */
-    transform: scaleY(0.8); /* Start slightly scaled down */
-    transform-origin: top center; /* Scale from the top center */
-    transition: opacity 0.4s ease, transform 0.4s ease; /* Smooth fade-in and scaling */
-}
-
-/* When Navbar is Open (Trigger Animation) */
-header .navbar-collapse.show {
-    opacity: 1; /* Fully visible */
-    transform: scaleY(1); /* Scale to normal size */
-}
-
-/* Navbar Dropdown Links */
-header .navbar-collapse .nav-link {
-    color: white; /* Light text color for visibility */
-    padding: 0.5rem 1rem; /* Add spacing for better clickability */
-    display: block; /* Stack links vertically */
-    text-align: center; /* Center-align text */
-    transition: color 0.3s ease; /* Smooth hover transition */
-}
-
-header .navbar-collapse .nav-link:hover {
-    color: #f4a261; /* Change color on hover */
-    text-shadow: 0px 0px 10px rgba(244, 162, 97, 0.8); /* Glow effect on hover */
-}
-
-/* Optional Hover Animation for the Links */
-header .navbar-collapse .nav-link {
-    position: relative;
+.site-navbar__title {
+    font-size: clamp(0.95rem, 2.2vw, 1.15rem);
+    font-weight: 700;
+    line-height: 1.35;
+    letter-spacing: 0;
+    white-space: nowrap;
     overflow: hidden;
+    text-overflow: ellipsis;
 }
 
-header .navbar-collapse .nav-link:hover::after {
-    content: '';
-    position: absolute;
-    bottom: 0;
-    left: 50%;
-    width: 0;
-    height: 2px;
-    background: #f4a261; /* Hover underline color */
-    transition: all 0.3s ease;
-    transform: translateX(-50%);
+.site-navbar__toggler {
+    border: 2px solid rgba(255, 255, 255, 0.45);
+    border-radius: 10px;
+    padding: 0.45rem 0.65rem;
+    margin-inline-start: auto;
 }
 
-header .navbar-collapse .nav-link:hover::after {
-    width: 100%; /* Expand underline on hover */
+.site-navbar__toggler:focus {
+    box-shadow: 0 0 0 3px rgba(244, 162, 97, 0.45);
 }
 
+.site-navbar__toggler .navbar-toggler-icon {
+    width: 1.35rem;
+    height: 1.35rem;
+}
 
+.site-navbar__collapse {
+    flex-grow: 1;
+}
 
-/* Responsive Adjustments */
-/* Responsive Adjustments */
-@media (max-width: 992px) {
-    /* Navbar for smaller screens */
-    header .navbar {
-        display: flex; /* Ensure flex container behavior */
-        flex-wrap: nowrap; /* Prevent wrapping of items */
-        align-items: center; /* Align items vertically */
-        justify-content: space-between; /* Distribute title and toggler */
+.site-navbar__nav {
+    align-items: center;
+    gap: 0.15rem;
+    padding: 0.5rem 0;
+    width: 100%;
+}
+
+.site-navbar .nav-link {
+    color: rgba(255, 255, 255, 0.92) !important;
+    font-size: 0.9rem;
+    font-weight: 500;
+    padding: 0.5rem 0.65rem !important;
+    border-radius: 8px;
+    white-space: nowrap;
+    transition: color 0.2s ease, background-color 0.2s ease;
+    text-transform: none;
+    letter-spacing: 0;
+}
+
+.site-navbar .nav-link:hover,
+.site-navbar .nav-link:focus {
+    color: var(--brand-accent) !important;
+    background-color: rgba(255, 255, 255, 0.08);
+}
+
+.site-navbar .nav-link.active {
+    color: #fff !important;
+    background-color: rgba(255, 255, 255, 0.15);
+}
+
+.site-navbar__news i {
+    font-size: 0.65em;
+    margin-inline-start: 0.35rem;
+    opacity: 0.85;
+    vertical-align: middle;
+}
+
+/* Desktop: nav flows from right (brand) to left */
+@media (min-width: 1200px) {
+    .site-navbar__collapse {
+        justify-content: flex-end;
     }
 
-    header .navbar-toggler {
-        margin-left: 4rem; /* Move hamburger to the left */
-        margin-right: auto; /* Align it closer to the left edge */
-        align-self: center; /* Ensure it aligns vertically */
+    .site-navbar__nav {
+        flex-direction: row;
+        flex-wrap: wrap;
+        justify-content: flex-end;
+        gap: 0.1rem 0.05rem;
+        padding: 0;
     }
 
-    header .navbar-nav {
-        flex-direction: column; /* Stack links vertically */
-        margin-left: 0; /* Reset margin */
-        gap: 0.5rem; /* Adjust spacing */
+    .site-navbar__brand {
+        max-width: 300px;
     }
 
-    header .nav-link {
-        text-align: center; /* Center-align nav links */
+    .site-navbar .nav-link {
+        font-size: 0.85rem;
+        padding: 0.45rem 0.55rem !important;
+    }
+}
+
+/* Tablet / mobile menu */
+@media (max-width: 1199.98px) {
+    .site-navbar__collapse {
+        position: absolute;
+        inset-inline: 0;
+        top: 100%;
+        background: var(--brand-purple-dark);
+        border-top: 1px solid rgba(255, 255, 255, 0.12);
+        box-shadow: 0 12px 28px rgba(0, 0, 0, 0.25);
+        padding: 0.75rem 1rem 1rem;
+        max-height: calc(100vh - var(--header-height));
+        overflow-y: auto;
+    }
+
+    .site-navbar__nav {
+        flex-direction: column;
+        align-items: stretch;
+        gap: 0.25rem;
+    }
+
+    .site-navbar .nav-link {
+        font-size: 1.05rem;
+        padding: 0.75rem 1rem !important;
+        text-align: right;
+        border-radius: 10px;
+    }
+
+    .site-navbar__title {
+        white-space: normal;
+        font-size: 1rem;
+    }
+}
+
+@media (max-width: 380px) {
+    .site-navbar__title {
+        display: none;
+    }
+
+    .site-navbar__brand {
+        max-width: none;
     }
 }
 
@@ -278,7 +222,7 @@ header .navbar-collapse .nav-link:hover::after {
     text-align: center;
     position: relative;
     overflow: hidden;
-    margin-top: -1rem;
+    margin-top: 0;
 }
 
 .hero::before {
