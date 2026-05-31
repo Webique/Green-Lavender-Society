@@ -897,6 +897,84 @@ header .navbar-collapse .nav-link:hover::after {
     text-align: center;
 }
 
+/* Governance / compliance documents */
+.governance {
+    padding: 4rem 2rem;
+    margin-top: 6rem;
+    margin-bottom: 4rem;
+    background: #ffffff;
+    border-radius: 15px;
+    box-shadow: 0px 8px 12px rgba(0, 0, 0, 0.1);
+    max-width: 900px;
+}
+
+.governance .section-title {
+    margin-bottom: 1rem;
+}
+
+.governance-intro {
+    text-align: center;
+    font-size: 1.4rem;
+    color: #555555;
+    margin-bottom: 2.5rem;
+    line-height: 1.7;
+}
+
+.governance-documents {
+    margin: 0;
+    padding: 0;
+}
+
+.governance-documents li {
+    margin-bottom: 1rem;
+}
+
+.governance-documents__link {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    padding: 1.25rem 1.5rem;
+    background: linear-gradient(135deg, #ffffff, #f9f7fb);
+    border: 1px solid rgba(115, 85, 137, 0.15);
+    border-radius: 12px;
+    color: #264653;
+    text-decoration: none;
+    font-size: 1.35rem;
+    font-weight: 500;
+    transition: transform 0.25s ease, box-shadow 0.25s ease, border-color 0.25s ease;
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.06);
+}
+
+.governance-documents__link:hover {
+    transform: translateY(-3px);
+    border-color: rgba(115, 85, 137, 0.35);
+    box-shadow: 0px 8px 16px rgba(106, 13, 173, 0.15);
+    color: #735589;
+}
+
+.governance-documents__link i {
+    font-size: 1.75rem;
+    color: #c0392b;
+    flex-shrink: 0;
+}
+
+.governance-documents__link span {
+    text-align: right;
+    line-height: 1.5;
+}
+
+@media (max-width: 768px) {
+    .governance {
+        padding: 2.5rem 1.25rem;
+        max-width: calc(100% - 2rem);
+    }
+
+    .governance-documents__link {
+        font-size: 1.15rem;
+        padding: 1rem 1.25rem;
+    }
+}
+
 .location .section-title {
     font-size: 2.5rem;
     font-weight: bold;
