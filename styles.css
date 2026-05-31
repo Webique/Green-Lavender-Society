@@ -7,8 +7,16 @@
     --brand-green: #264653;
 }
 
+*,
+*::before,
+*::after {
+    box-sizing: border-box;
+}
+
 html {
     scroll-padding-top: calc(var(--header-height) + 1rem);
+    overflow-x: hidden;
+    -webkit-text-size-adjust: 100%;
 }
 
 body {
@@ -18,7 +26,29 @@ body {
     color: #000000;
     margin: 0;
     padding: 0;
+    padding-bottom: env(safe-area-inset-bottom);
     text-align: right;
+    overflow-x: hidden;
+    min-width: 0;
+}
+
+img,
+video,
+iframe {
+    max-width: 100%;
+    height: auto;
+}
+
+.section-title {
+    font-size: clamp(1.5rem, 5vw, 2.5rem);
+    font-weight: 700;
+    color: #000000;
+    text-align: center;
+    margin-bottom: clamp(1rem, 3vw, 2rem);
+}
+
+.container {
+    padding-inline: max(1rem, env(safe-area-inset-right)) max(1rem, env(safe-area-inset-left));
 }
 
 /* ——— Site header / navbar (RTL) ——— */
@@ -174,9 +204,10 @@ body {
         background: var(--brand-purple-dark);
         border-top: 1px solid rgba(255, 255, 255, 0.12);
         box-shadow: 0 12px 28px rgba(0, 0, 0, 0.25);
-        padding: 0.75rem 1rem 1rem;
-        max-height: calc(100vh - var(--header-height));
+        padding: 0.75rem 1rem max(1rem, env(safe-area-inset-bottom));
+        max-height: min(70vh, calc(100dvh - var(--header-height) - env(safe-area-inset-top)));
         overflow-y: auto;
+        -webkit-overflow-scrolling: touch;
     }
 
     .site-navbar__nav {
@@ -214,7 +245,7 @@ body {
 /* Hero Section */
 .hero {
     background: linear-gradient(to bottom, rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), url('background.jpg') no-repeat center center/cover;
-    height: 600px;
+    min-height: clamp(320px, 55vh, 600px);
     display: flex;
     align-items: center;
     justify-content: center;
@@ -223,6 +254,13 @@ body {
     position: relative;
     overflow: hidden;
     margin-top: 0;
+    padding: 2rem 0;
+}
+
+.hero__inner {
+    width: 100%;
+    max-width: 900px;
+    padding-inline: 1.25rem;
 }
 
 .hero::before {
@@ -238,14 +276,17 @@ body {
 
 .hero h1 {
     z-index: 2;
-    font-size: 1.8rem; /* Larger font for better emphasis */
-    font-weight: 700; /* Maintain boldness but with precise control */
-    margin-bottom: 1.2rem; /* Slightly increased spacing for a cleaner look */
-    line-height: 1.3; /* Balanced line height for readability */
-    color: #ffffff; /* A subtle dark gray for softer contrast */
-    text-align: center; /* Align the text to the center */
-    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2); /* Adds a subtle shadow for depth */
-    letter-spacing: 0.05em; /* Slightly spaced letters for elegance */
+    position: relative;
+    font-size: clamp(1rem, 4.2vw, 1.75rem);
+    font-weight: 700;
+    margin: 0;
+    line-height: 1.55;
+    color: #ffffff;
+    text-align: center;
+    text-shadow: 0 2px 8px rgba(0, 0, 0, 0.45);
+    letter-spacing: 0;
+    word-wrap: break-word;
+    overflow-wrap: anywhere;
 }
 
 
@@ -273,10 +314,10 @@ body {
 }
 
 .initiatives h3 {
-    font-size: 2rem; /* Adjusted size for headers within initiatives */
-    color: #264653; /* Dark green for distinction */
-    margin: 1.5rem 0; /* Even spacing above and below */
-    text-align: left; /* Align to left for better readability */
+    font-size: clamp(1.15rem, 4vw, 2rem);
+    color: #264653;
+    margin: 1.5rem 0;
+    text-align: right;
 }
 
 .initiatives p {
@@ -293,13 +334,13 @@ body {
     flex-direction: column;
     gap: 3rem;
     position: relative;
-    padding-left: 2rem;
+    padding-inline-end: 2rem;
 }
 
 .timeline::before {
     content: '';
     position: absolute;
-    left: 1.5rem;
+    inset-inline-end: 1.5rem;
     top: 0;
     bottom: 0;
     width: 4px;
@@ -311,13 +352,10 @@ body {
     align-items: center;
     gap: 1.5rem;
     position: relative;
+    flex-direction: row;
 }
 
-.timeline-item:nth-child(odd) {
-    flex-direction: row-reverse;
-}
-
-.timeline-item:nth-child(odd) .timeline-content {
+.timeline-item .timeline-content {
     text-align: right;
 }
 
@@ -378,14 +416,14 @@ body {
 .about {
     background-color: #ffffff;
     border-radius: 15px;
-    padding: 4rem 2rem;
+    padding: clamp(2rem, 5vw, 4rem) clamp(1.25rem, 4vw, 2rem);
     box-shadow: 0px 8px 12px rgba(0, 0, 0, 0.15);
-    margin-top: 2rem; /* Move the section higher */
-    margin-bottom: 4rem; /* Add spacing from the next section */
-    text-align: center; /* Center-align all text */
+    margin-top: 2rem;
+    margin-bottom: 4rem;
+    text-align: center;
     max-width: 900px;
-    margin-left: auto;
-    margin-right: auto;
+    margin-inline: auto;
+    width: calc(100% - 2rem);
 }
 
 .about-header {
@@ -396,11 +434,11 @@ body {
 }
 
 .about-logo {
-    width: 450px;
+    width: min(280px, 55vw);
     height: auto;
-    margin-top: -13rem;
-    margin-bottom: -4rem; /* Adjust spacing for consistent margins */
+    margin: 0 auto 1rem;
     border-radius: 50%;
+    display: block;
 }
 
 .about h2 {
@@ -413,20 +451,19 @@ body {
 }
 
 .about p {
-    font-size: 1.6rem;
+    font-size: clamp(1rem, 2.5vw, 1.35rem);
     line-height: 1.8;
-    color: #000000; /* Updated for consistency */
-    text-align: center; /* Center-align paragraphs */
-    margin: 1.5rem 0; /* Even spacing above and below */
+    color: #000000;
+    text-align: center;
+    margin: 1.25rem 0;
 }
 
 .about h3 {
-    font-family: 'Poppins', sans-serif;
-    font-size: 2.5rem;
+    font-size: clamp(1.25rem, 4vw, 2rem);
     font-weight: bold;
     color: #000000;
-    margin: 1.5rem 0; /* Even spacing above and below */
-    text-align: center; /* Center-align subheadings */
+    margin: 1.5rem 0 0.75rem;
+    text-align: center;
 }
 
 
@@ -481,10 +518,13 @@ body {
     box-shadow: 0px 8px 16px rgba(106, 13, 173, 0.2); /* Purple shadow on hover */
 }
 
-/* Center the last item if it's alone in a row */
-.objectives-grid > :nth-last-child(1):nth-child(odd) {
-    grid-column: span 2; /* Span the entire row if it's alone */
-    justify-self: center; /* Center the item horizontally */
+/* Center the last item if alone in a row (desktop only) */
+@media (min-width: 769px) {
+    .objectives-grid > :nth-last-child(1):nth-child(odd) {
+        grid-column: span 2;
+        justify-self: center;
+        max-width: 50%;
+    }
 }
 
 
@@ -622,38 +662,29 @@ body {
 }
 
 
-.carousel-control-prev-icon,
-.carousel-control-next-icon {
-    background-color: black; /* Change arrow color to black */
-    background-size: 100%; /* Ensure the arrow fits perfectly */
-    border-radius: 50%; /* Optional: Rounded shape for a modern look */
-    width: 30px; /* Adjust size */
-    height: 30px; /* Adjust size */
+.slideshow-carousel .carousel-media {
+    width: 100%;
+    max-width: 100%;
+    max-height: min(70vh, 480px);
+    height: auto;
+    object-fit: contain;
+    border-radius: 10px;
+    margin-inline: auto;
+    display: block;
 }
 
-@media (max-width: 768px) {
-    #photoCarousel .carousel-item img,
-    #photoCarousel .carousel-item video {
-        max-width: 90%; /* Restrict the content to 90% of the container width */
-        max-height: 70vh; /* Restrict the height to 70% of the viewport height */
-        object-fit: contain; /* Ensure the entire content fits within the frame */
-        margin: 0 auto; /* Center the content */
-        display: block; /* Ensure proper centering as a block element */
-    }
+.slideshow-carousel .carousel-item {
+    min-height: 200px;
+    padding: 0.5rem;
+}
 
-    #photoCarousel .carousel-control-prev,
-    #photoCarousel .carousel-control-next {
-        width: 5%; /* Optional: Reduce the arrow container size */
-    }
-
-    #photoCarousel .carousel-control-prev {
-        left: -3%; /* Move the left arrow further to the left */
-    }
-
-    #photoCarousel .carousel-control-next {
-        right: -3%; /* Move the right arrow further to the right */
-    }
-
+.carousel-control-prev-icon,
+.carousel-control-next-icon {
+    background-color: rgba(0, 0, 0, 0.75);
+    background-size: 100%;
+    border-radius: 50%;
+    width: 2rem;
+    height: 2rem;
 }
 
 
@@ -1099,72 +1130,233 @@ footer a:hover {
 
 
 
-/* General Responsive Rules */
-@media (max-width: 768px) {
-    body {
-        font-size: 90%; /* Scale down overall font size */
-        padding: 0;
-        margin: 0;
-        text-align: center; /* Center-align text globally */
+/* ——— Mobile & tablet responsive ——— */
+@media (max-width: 991.98px) {
+    :root {
+        --header-height: 4rem;
     }
 
-    section {
-        padding: 2rem 1rem; /* Adjust padding for sections */
-        margin: 2rem auto; /* Consistent margins between sections */
-        text-align: center; /* Center-align all section content */
-        max-width: 90%; /* Ensure sections fit within screen width */
+    .site-navbar__logo {
+        width: 44px;
+        height: 44px;
     }
 
-    .section-title {
-        font-size: 1.8rem; /* Smaller title size */
-        margin-bottom: 1.5rem; /* Ensure spacing below titles */
-        font-weight: bold;
+    .projects,
+    .initiatives,
+    .associated-companies,
+    .statistics,
+    .location,
+    .governance,
+    .objectives,
+    .about,
+    .slideshow {
+        margin-top: 2.5rem;
+        margin-bottom: 2.5rem;
+        padding: 2rem 1.25rem;
+        width: 100%;
+        max-width: 100%;
     }
 
-    .about {
-        padding: 0; /* Remove all padding inside the .about section */
-        margin: 1rem auto; /* Reduce vertical margin for the section */
-        max-width: 85%; /* Keep the width optimized for smaller screens */
-        text-align: center; /* Center-align all text */
-        border-radius: 15px; /* Retain smooth corners */
-        box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1); /* Optional shadow for depth */
+    .about-logo {
+        width: min(220px, 70vw);
+        max-width: 100%;
+        margin: 0 auto 1rem;
     }
-    
-    .about img {
-        width: 450px; /* Maintain desired size for the logo */
-        height: auto; /* Maintain aspect ratio */
-        margin-top: -10rem; /* Pull the logo closer to the top */
-        margin-bottom: -6rem; /* Keep some space below the logo */
-        margin-left: auto;
-        margin-right: auto; /* Center-align the image */
-    }
-    
-    
 
+    .about h2,
+    .about h3 {
+        font-size: clamp(1.25rem, 5vw, 1.75rem);
+    }
+
+    .about p {
+        font-size: 1.05rem;
+        line-height: 1.75;
+        padding-inline: 0.25rem;
+    }
+
+    .objectives-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .objective-item h3 {
+        font-size: 1.15rem;
+    }
+
+    .objective-item p {
+        font-size: 1rem;
+    }
+
+    .initiatives p,
+    .timeline-item .timeline-content p {
+        font-size: 1rem;
+    }
+
+    .timeline {
+        padding-inline-end: 1.25rem;
+        gap: 2rem;
+    }
+
+    .timeline::before {
+        inset-inline-end: 0.5rem;
+    }
+
+    .timeline-item {
+        flex-direction: column;
+        text-align: center;
+    }
+
+    .timeline-item .timeline-content {
+        text-align: center;
+        width: 100%;
+    }
+
+    .timeline-item .timeline-content h3 {
+        font-size: 1.2rem;
+    }
+
+    .timeline-item .timeline-image img {
+        width: 88px;
+        height: 88px;
+    }
+
+    .statistics .row {
+        flex-direction: column;
+        gap: 1rem;
+    }
+
+    .statistics .stat-box {
+        max-width: 100%;
+        width: 100%;
+    }
+
+    .statistics .stat-number {
+        font-size: 2rem;
+    }
+
+    .statistics p {
+        font-size: 1rem;
+    }
+
+    .map-container iframe {
+        height: 280px;
+    }
+
+    .location p {
+        font-size: 1rem;
+    }
+
+    .company-card h3 {
+        font-size: 1.15rem;
+    }
+
+    .company-card p,
+    .company-card__name-en {
+        font-size: 0.95rem !important;
+    }
+
+    .governance-documents__link {
+        font-size: 1rem;
+        padding: 1rem;
+    }
+
+    .cta {
+        margin: 2rem 1rem;
+        padding: 2rem 1.25rem;
+        max-width: calc(100% - 2rem);
+    }
+
+    .cta h2 {
+        font-size: 1.5rem;
+    }
+
+    .cta p {
+        font-size: 1.05rem;
+    }
+
+    .cta a {
+        display: block;
+        width: 100%;
+    }
 
     .cta button {
-        padding: 0.8rem 2rem; /* Adjust button size */
-        font-size: 1rem;
-        width: 100%; /* Full width for better usability */
-        margin: 1rem auto; /* Center-align button */
+        width: 100%;
+        min-height: 48px;
+        font-size: 1.1rem;
+        padding: 0.85rem 1.5rem;
     }
 
-
-    .projects .project-card {
-        padding: 1rem; /* Compact project card layout */
-        font-size: 1rem; /* Adjust project card text */
-        margin: 1rem auto; /* Center-align project cards */
-        max-width: 90%; /* Fit within screen width */
+    footer {
+        padding: 1.25rem 1rem;
+        padding-bottom: max(1.25rem, env(safe-area-inset-bottom));
     }
 
-    .projects .project-card h3 {
-        font-size: 1.4rem; /* Smaller heading */
+    .footer-contact p,
+    .footer-social h3 {
+        font-size: 0.95rem;
+        word-break: break-word;
+    }
+}
+
+@media (max-width: 575.98px) {
+    .hero {
+        min-height: 50vh;
+        padding: 1.5rem 0;
     }
 
-    .projects .project-card p {
-        font-size: 1rem;
-        line-height: 1.5;
-        text-align: center; /* Center-align text in project cards */
+    .hero__inner {
+        padding-inline: 1rem;
+    }
+
+    .site-navbar__container {
+        padding-inline: 0.75rem;
+    }
+
+    .project-feature__title {
+        font-size: 1.2rem;
+        line-height: 1.45;
+    }
+
+    .project-feature__desc {
+        font-size: 0.95rem;
+        margin-bottom: 1.5rem;
+    }
+
+    .project-gallery__item img {
+        height: auto;
+        min-height: 180px;
+        max-height: 220px;
+    }
+
+    .project-gallery__item--featured img {
+        max-height: 260px;
+    }
+
+    .slideshow-carousel .carousel-media {
+        max-height: 55vh;
+    }
+
+    .statistics .section-title {
+        font-size: 1.35rem;
+    }
+
+    .governance {
+        padding: 1.75rem 1rem;
+        margin-inline: 0.5rem;
+    }
+
+    .governance-intro {
+        font-size: 0.95rem;
+    }
+}
+
+@media (max-width: 380px) {
+    .hero h1 {
+        font-size: 0.95rem;
+    }
+
+    .objective-item,
+    .company-card {
+        padding: 1rem;
     }
 }
 
