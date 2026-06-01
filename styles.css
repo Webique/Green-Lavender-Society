@@ -756,16 +756,69 @@ iframe {
 }
 
 .company-card__name-en {
-    font-size: 1.2rem !important;
+    font-size: 0.9rem !important;
     color: #555555 !important;
-    margin-top: 0.5rem !important;
+    margin-top: 0.35rem !important;
+    line-height: 1.4;
+}
+
+.company-card__logo-wrap--icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 140px;
+    color: var(--brand-purple);
+}
+
+.company-card__logo-wrap--icon i {
+    font-size: 3.5rem;
+    opacity: 0.85;
+}
+
+.company-card__docs {
+    margin-top: 1rem;
+    text-align: right;
+}
+
+.company-card__docs a {
+    display: flex;
+    align-items: flex-start;
+    gap: 0.5rem;
+    font-size: 0.85rem;
+    color: var(--brand-purple);
+    text-decoration: none;
+    padding: 0.4rem 0;
+    line-height: 1.4;
+    transition: color 0.2s ease;
+}
+
+.company-card__docs a:hover {
+    color: var(--brand-accent-hover);
+}
+
+.company-card__docs i {
+    color: #c0392b;
+    margin-top: 0.15rem;
+    flex-shrink: 0;
+}
+
+.partners-grid .company-card--partner {
+    height: 100%;
 }
 
 
+.company-card--partner h3 {
+    font-size: 1.15rem;
+    font-weight: 700;
+    color: #264653;
+    margin-bottom: 0.5rem;
+    line-height: 1.45;
+}
+
 .company-card h3 {
-    font-size: 2rem; /* Emphasize company name */
+    font-size: 2rem;
     font-weight: bold;
-    color: #040404; /* Purple text for titles */
+    color: #040404;
     margin-bottom: 0.5rem;
 }
 
@@ -798,12 +851,12 @@ iframe {
         height: auto;
     }
 
-    .company-card h3 {
-        font-size: 2rem; /* Slightly smaller text for titles */
+    .company-card--partner h3 {
+        font-size: 1.05rem;
     }
 
     .company-card p {
-        font-size: 1.6rem; /* Smaller text for description */
+        font-size: 1.6rem;
     }
 }
 
@@ -1245,8 +1298,12 @@ footer a:hover {
         font-size: 1rem;
     }
 
-    .company-card h3 {
-        font-size: 1.15rem;
+    .company-card--partner h3 {
+        font-size: 1rem;
+    }
+
+    .company-card__docs a {
+        font-size: 0.8rem;
     }
 
     .company-card p,
